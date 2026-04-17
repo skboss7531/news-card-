@@ -10,19 +10,30 @@
 <!-- 1080x1080 CANVAS -->
 <div style="position: relative; width:1080px; height:1080px; overflow:hidden;">
 
-  <!-- DYNAMIC IMAGE -->
-  <img id="mainImg"
-    style="
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      z-index:1;
-    " />
+  <!-- 1️⃣ IMAGE (scaled down, no crop, moved up) -->
+  <div style="
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:85px;
+    z-index:1;
+    overflow:hidden;
+  ">
+    <img id="mainImg"
+      style="
+        transform: scale(0.75);
+        transform-origin: top center;
+        max-width:100%;
+        height:auto;
+      " />
+  </div>
 
-  <!-- FIXED PNG FRAME -->
+  <!-- 2️⃣ PNG FRAME -->
   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKqEvDkxNuuBLQy0paMBOeQMc3xncdmII3PTeYxAoOWubp-OLD7nEKtVaEQKZrVOdS20g64oOrDTEcmHgNTX03YIkBPoUMEBYMbheZkbYmo3rlrVZWxZNtOyKTmAq9oacRL4zlt0i885JAFwqOI7eJGJftDiK1YuUXCuO0ky5u5UrVZTUXctbd_5ZumOlB/s1080/News%20Format.png"
     style="
       position:absolute;
@@ -33,7 +44,7 @@
       z-index:2;
     " />
 
-  <!-- TITLE -->
+  <!-- 3️⃣ TITLE -->
   <div id="titleText"
     style="
       position:absolute;
@@ -55,17 +66,17 @@
 
 </div>
 
-<!-- URL PARSER SCRIPT -->
+<!-- 4️⃣ URL CONTROL SCRIPT -->
 <script>
 const p = new URLSearchParams(window.location.search);
 
-// image set
+// image
 const img = p.get("img");
 if(img){
-  document.getElementById("mainImg").src = img;
+  document.getElementById("mainImg").src = decodeURIComponent(img);
 }
 
-// title set
+// title
 const title = p.get("title");
 if(title){
   document.getElementById("titleText").innerText = decodeURIComponent(title);
@@ -73,4 +84,4 @@ if(title){
 </script>
 
 </body>
-</html>
+    </html>
