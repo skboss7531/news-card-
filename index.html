@@ -7,10 +7,10 @@
 
 <body style="margin:0; background:#000; display:flex; justify-content:center; align-items:center;">
 
-<!-- CANVAS -->
+<!-- 1080x1080 CANVAS -->
 <div style="position: relative; width:1080px; height:1080px; overflow:hidden;">
 
-  <!-- DYNAMIC IMAGE (URL থেকে আসবে) -->
+  <!-- DYNAMIC IMAGE -->
   <img id="mainImg"
     style="
       position:absolute;
@@ -23,7 +23,7 @@
     " />
 
   <!-- FIXED PNG FRAME -->
-  <img src="YOUR_PNG_FRAME_URL"
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKqEvDkxNuuBLQy0paMBOeQMc3xncdmII3PTeYxAoOWubp-OLD7nEKtVaEQKZrVOdS20g64oOrDTEcmHgNTX03YIkBPoUMEBYMbheZkbYmo3rlrVZWxZNtOyKTmAq9oacRL4zlt0i885JAFwqOI7eJGJftDiK1YuUXCuO0ky5u5UrVZTUXctbd_5ZumOlB/s1080/News%20Format.png"
     style="
       position:absolute;
       top:0;
@@ -55,15 +55,21 @@
 
 </div>
 
-<!-- SCRIPT: URL থেকে data নিবে -->
+<!-- URL PARSER SCRIPT -->
 <script>
-const params = new URLSearchParams(window.location.search);
+const p = new URLSearchParams(window.location.search);
 
-// image
-document.getElementById("mainImg").src = params.get("img");
+// image set
+const img = p.get("img");
+if(img){
+  document.getElementById("mainImg").src = img;
+}
 
-// title
-document.getElementById("titleText").innerText = decodeURIComponent(params.get("title") || "");
+// title set
+const title = p.get("title");
+if(title){
+  document.getElementById("titleText").innerText = decodeURIComponent(title);
+}
 </script>
 
 </body>
